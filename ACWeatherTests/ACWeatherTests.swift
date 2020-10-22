@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import MapKit
 @testable import ACWeather
 
 class ACWeatherTests: XCTestCase {
@@ -21,6 +22,26 @@ class ACWeatherTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    
+    func testOpenWeatherAPI() throws {
+        guard let key = Bundle.main.object(forInfoDictionaryKey: "Open Weather API Key") as? String else {
+            XCTAssert(false)
+            return
+        }
+        let api = OpenWeatherAPI(key: key, type: .json)
+        let coord = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+        var isRunning = true
+        api.weather(location: coord, success: { response in
+            print(response)
+            XCTAssert(true)
+            isRunning = false
+        }, failure: {
+            XCTAssert(false)
+        })
+        while (isRunning) {
+            sleep(1)
+        }
     }
 
     func testPerformanceExample() throws {

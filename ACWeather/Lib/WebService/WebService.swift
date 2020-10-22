@@ -36,7 +36,7 @@ class WebService {
         self.components.scheme = self.scheme
     }
     
-    internal func webCall(path: String, parameters: [String : String?]) {
+    internal func webCall(path: String, parameters: [String : String?], success: @escaping ([String : Any?])->(), failure: @escaping ()->()) {
         var comps = self.components
         comps.path = path
         comps.queryItems = []
@@ -55,16 +55,22 @@ class WebService {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let err = error {
                 print("ERROR: \(err)")
+                failure()
                 return
             }
             guard let stringData = data else {
                 print("ERROR: Could not get text response!")
+                failure()
                 return
             }
             
             switch self.type {
             case .json:
-                self.parseJSON(text: stringData)
+                if let json = self.parseJSON(text: stringData) {
+                    success(json)
+                } else {
+                    failure()
+                }
             case .xml:
                 assertionFailure("XML parsing not implemented")
             }
@@ -72,16 +78,17 @@ class WebService {
         task.resume()
     }
     
-    private func parseJSON(text: Data) {
+    private func parseJSON(text: Data) -> [String : Any?]? {
         do {
             guard let json = try JSONSerialization.jsonObject(with: text, options: []) as? [String : Any?] else {
                 print("ERROR: could not parse JSON")
-                return
+                return nil
             }
-            print("JSON \(json)")
+            return json
         } catch {
             print("ERROR: Could not parse JSON")
         }
+        return nil
     }
     
 }

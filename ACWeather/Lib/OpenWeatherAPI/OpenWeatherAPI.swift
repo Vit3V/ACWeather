@@ -17,14 +17,18 @@ class OpenWeatherAPI: WebService {
         super.init(serviceHost: "api.openweathermap.org", serviceType: .json, serviceScheme: .https)
     }
     
-    public func weather(location: CLLocationCoordinate2D, units: OpenWeatherUnits = .standard, language: OpenWeatherLang = .en, mode: String = "json") {
+    public func weather(location: CLLocationCoordinate2D, units: OpenWeatherUnits = .standard, language: OpenWeatherLang = .en, mode: String = "json", success: (([String : Any?])->())?, failure: (()->())?) {
         self.webCall(path: "/data/2.5/weather", parameters: [
             "lat"   : String(location.latitude),
             "lon"   : String(location.longitude),
             "appid" : self.appKey,
             "units" : units.rawValue,
             "lang"  : language.rawValue,
-        ])
+        ], success: { response in
+            success?(response)
+        }, failure: {
+            failure?()
+        })
     }
     
 }
