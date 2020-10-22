@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     
     var api: OpenWeatherAPI?
     let locationManager = CLLocationManager()
-    var selectedData: Weather?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +54,8 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let details = segue.destination as? DetailsController {
-            details.weather = self.selectedData
+        if let details = segue.destination as? DetailsController, let cell = sender as? WeatherCell {
+            details.weather = cell.weatherData
         }
     }
     
@@ -73,16 +72,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if let weatherCell = self.tableView.dequeueReusableCell(withIdentifier: "weather_cell") as? WeatherCell {
             let weatherArray = (DataManager.getEntities(name: "Weather") as [Weather])
             let weatherData = weatherArray[indexPath.row]
-            weatherCell.city.text = weatherData.name
-            weatherCell.temperature.text = String(weatherData.main_temp) + "°"
-            let date = Date(timeIntervalSinceReferenceDate: TimeInterval(Int(weatherData.dt)))
-            let formatter = DateFormatter()
-            formatter.dateStyle = .short
-            formatter.doesRelativeDateFormatting = true
-            weatherCell.weatherDate.text = formatter.string(from: date)
-            if let icon = weatherData.weather_icon, let url = URL(string: "http://openweathermap.org/img/wn/\(icon)@2x.png") {
-                weatherCell.icon.loadFrom(url: url)
-            }
+            weatherCell.weatherData = weatherData
             cell = weatherCell
         } else {
             cell = UITableViewCell()
@@ -116,8 +106,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = DataManager.getEntities(name: "Weather") as [Weather]
         guard indexPath.row < data.count else { return }
-        self.selectedData = data[indexPath.row]
         self.tableView.deselectRow(at: indexPath, animated: false)
+        self.performSegue(withIdentifier: "show_details", sender: self.tableView.cellForRow(at: indexPath))
     }
     
 }

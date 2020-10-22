@@ -14,6 +14,8 @@ class DetailsController: UITableViewController, NSFetchedResultsControllerDelega
     var weather: Weather? {
         didSet {
             self.attributes = self.weather?.entity.attributesByName.enumerated().map { $0.element.key }
+            self.attributes = self.attributes?.sorted()
+            self.tableView.reloadData()
         }
     }
     

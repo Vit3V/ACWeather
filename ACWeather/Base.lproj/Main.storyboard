@@ -92,7 +92,6 @@
                                             <outlet property="temperature" destination="CLD-Ur-mgh" id="qeC-PM-uhw"/>
                                             <outlet property="weatherDate" destination="2ju-MZ-rMb" id="ZDY-6G-KBu"/>
                                             <outlet property="windSpeed" destination="BS9-4D-3TU" id="tBk-Cj-WPq"/>
-                                            <segue destination="zyA-fq-d4s" kind="presentation" id="oNk-ES-ZiL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -123,6 +122,7 @@
                     <navigationItem key="navigationItem" id="kbo-S4-TL0"/>
                     <connections>
                         <outlet property="tableView" destination="FVW-HJ-04Q" id="Ye5-JW-fhU"/>
+                        <segue destination="zyA-fq-d4s" kind="presentation" identifier="show_details" id="M1k-ia-3k2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
