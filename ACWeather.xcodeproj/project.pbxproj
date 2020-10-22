@@ -16,6 +16,8 @@
 		370354DC253773B9004EEE3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 370354DA253773B9004EEE3C /* LaunchScreen.storyboard */; };
 		370354E7253773B9004EEE3C /* ACWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370354E6253773B9004EEE3C /* ACWeatherTests.swift */; };
 		370354F2253773B9004EEE3C /* ACWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370354F1253773B9004EEE3C /* ACWeatherUITests.swift */; };
+		377C7ED025410F9100DE79DB /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C7ECF25410F9100DE79DB /* WeatherCell.swift */; };
+		377C7EDE254116A900DE79DB /* UIImageViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C7EDD254116A900DE79DB /* UIImageViewExt.swift */; };
 		37D3167A253CC8B000140093 /* OpenWeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D31679253CC8B000140093 /* OpenWeatherAPI.swift */; };
 		37D3167F253CCF0D00140093 /* OpenWeatherLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D3167E253CCF0D00140093 /* OpenWeatherLanguages.swift */; };
 		37D31684253CCF7100140093 /* OpenWeatherUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D31683253CCF7100140093 /* OpenWeatherUnits.swift */; };
@@ -56,6 +58,8 @@
 		370354ED253773B9004EEE3C /* ACWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		370354F1253773B9004EEE3C /* ACWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACWeatherUITests.swift; sourceTree = "<group>"; };
 		370354F3253773B9004EEE3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		377C7ECF25410F9100DE79DB /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		377C7EDD254116A900DE79DB /* UIImageViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExt.swift; sourceTree = "<group>"; };
 		37D31679253CC8B000140093 /* OpenWeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherAPI.swift; sourceTree = "<group>"; };
 		37D3167E253CCF0D00140093 /* OpenWeatherLanguages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherLanguages.swift; sourceTree = "<group>"; };
 		37D31683253CCF7100140093 /* OpenWeatherUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherUnits.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 		370354CB253773B8004EEE3C /* ACWeather */ = {
 			isa = PBXGroup;
 			children = (
+				377C7ECE25410F8200DE79DB /* Views */,
 				37FD7A602540EC080027749A /* Controller */,
 				37FD7A5A2540EB1D0027749A /* Model */,
 				370355052537796B004EEE3C /* Lib */,
@@ -148,6 +153,7 @@
 			children = (
 				3733D70D253CF9DA00F7CFCB /* WebService */,
 				37D31688253CD57800140093 /* OpenWeatherAPI */,
+				377C7EDD254116A900DE79DB /* UIImageViewExt.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -158,6 +164,14 @@
 				37D31689253CD59900140093 /* WebService.swift */,
 			);
 			path = WebService;
+			sourceTree = "<group>";
+		};
+		377C7ECE25410F8200DE79DB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				377C7ECF25410F9100DE79DB /* WeatherCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		37D31688253CD57800140093 /* OpenWeatherAPI */ = {
@@ -318,12 +332,14 @@
 			files = (
 				370354D1253773B8004EEE3C /* ViewController.swift in Sources */,
 				37D3167A253CC8B000140093 /* OpenWeatherAPI.swift in Sources */,
+				377C7ED025410F9100DE79DB /* WeatherCell.swift in Sources */,
 				37D3168A253CD59900140093 /* WebService.swift in Sources */,
 				370354CD253773B8004EEE3C /* AppDelegate.swift in Sources */,
 				370354D7253773B8004EEE3C /* ACWeather.xcdatamodeld in Sources */,
 				37D31684253CCF7100140093 /* OpenWeatherUnits.swift in Sources */,
 				37FD7A5C2540EB2E0027749A /* DataManager.swift in Sources */,
 				37D3167F253CCF0D00140093 /* OpenWeatherLanguages.swift in Sources */,
+				377C7EDE254116A900DE79DB /* UIImageViewExt.swift in Sources */,
 				370354CF253773B8004EEE3C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,13 +517,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F3L6QLS4P8;
+				DEVELOPMENT_TEAM = 8MQLV65F5X;
 				INFOPLIST_FILE = ACWeather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vit3v.ACWeather;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vit3vs.ACWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -520,13 +536,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F3L6QLS4P8;
+				DEVELOPMENT_TEAM = 8MQLV65F5X;
 				INFOPLIST_FILE = ACWeather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vit3v.ACWeather;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vit3vs.ACWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

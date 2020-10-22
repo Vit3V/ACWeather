@@ -25,6 +25,9 @@ class ViewController: UIViewController {
         }
         self.api = OpenWeatherAPI(key: appKey, type: .json)
         
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.allowsMultipleSelectionDuringEditing = false
         NotificationCenter.default.addObserver(forName: .weatherDataAdded, object: nil, queue: .none, using: { _ in
             self.tableView.reloadData()
         })
@@ -45,7 +48,7 @@ class ViewController: UIViewController {
             self.present(alert, animated: true, completion: {})
             return
         }
-        self.api?.weather(location: location.coordinate, success: { resp in
+        self.api?.weather(location: location.coordinate, units: .metric, success: { resp in
             DispatchQueue.main.async {
                 DataManager.saveWeather(weatherResponse: resp)
             }
@@ -64,12 +67,47 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
-        if let weatherCell = self.tableView.dequeueReusableCell(withIdentifier: "weather_cell") {
+        if let weatherCell = self.tableView.dequeueReusableCell(withIdentifier: "weather_cell") as? WeatherCell {
+            let weatherArray = (DataManager.getEntities(name: "Weather") as [Weather])
+            let weatherData = weatherArray[indexPath.row]
+            weatherCell.city.text = weatherData.name
+            weatherCell.temperature.text = String(weatherData.main_temp) + "°"
+            let date = Date(timeIntervalSinceReferenceDate: TimeInterval(Int(weatherData.dt)))
+            let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            formatter.doesRelativeDateFormatting = true
+            weatherCell.weatherDate.text = formatter.string(from: date)
+            if let icon = weatherData.weather_icon, let url = URL(string: "http://openweathermap.org/img/wn/\(icon)@2x.png") {
+                weatherCell.icon.loadFrom(url: url)
+            }
             cell = weatherCell
         } else {
             cell = UITableViewCell()
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "weather_cell") {
+            return cell.frame.height
+        }
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let weather = (DataManager.getEntities(name: "Weather") as [Weather])
+            guard indexPath.row < weather.count else {
+                print("ERROR: The item seems not to exist in this array!")
+                return
+            }
+            DataManager.removeItem(item: weather[indexPath.row])
+            self.tableView.reloadData()
+        }
     }
     
 }
