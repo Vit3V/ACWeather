@@ -92,6 +92,7 @@
                                             <outlet property="temperature" destination="CLD-Ur-mgh" id="qeC-PM-uhw"/>
                                             <outlet property="weatherDate" destination="2ju-MZ-rMb" id="ZDY-6G-KBu"/>
                                             <outlet property="windSpeed" destination="BS9-4D-3TU" id="tBk-Cj-WPq"/>
+                                            <segue destination="zyA-fq-d4s" kind="presentation" id="oNk-ES-ZiL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -127,6 +128,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
+        </scene>
+        <!--Details Controller-->
+        <scene sceneID="xFX-oL-Gz6">
+            <objects>
+                <tableViewController id="zyA-fq-d4s" customClass="DetailsController" customModule="ACWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ggH-kN-mf3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="KM5-DH-PW3">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KM5-DH-PW3" id="8CO-tX-LUX">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zyA-fq-d4s" id="yvm-1j-nlE"/>
+                            <outlet property="delegate" destination="zyA-fq-d4s" id="wQ2-ma-8Pj"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4fL-kH-gA1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1971" y="122"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lkN-c5-taO">

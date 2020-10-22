@@ -18,6 +18,7 @@
 		370354F2253773B9004EEE3C /* ACWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370354F1253773B9004EEE3C /* ACWeatherUITests.swift */; };
 		377C7ED025410F9100DE79DB /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C7ECF25410F9100DE79DB /* WeatherCell.swift */; };
 		377C7EDE254116A900DE79DB /* UIImageViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C7EDD254116A900DE79DB /* UIImageViewExt.swift */; };
+		377C7EE32541288A00DE79DB /* DetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C7EE22541288A00DE79DB /* DetailsController.swift */; };
 		37D3167A253CC8B000140093 /* OpenWeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D31679253CC8B000140093 /* OpenWeatherAPI.swift */; };
 		37D3167F253CCF0D00140093 /* OpenWeatherLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D3167E253CCF0D00140093 /* OpenWeatherLanguages.swift */; };
 		37D31684253CCF7100140093 /* OpenWeatherUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D31683253CCF7100140093 /* OpenWeatherUnits.swift */; };
@@ -60,6 +61,7 @@
 		370354F3253773B9004EEE3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		377C7ECF25410F9100DE79DB /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		377C7EDD254116A900DE79DB /* UIImageViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExt.swift; sourceTree = "<group>"; };
+		377C7EE22541288A00DE79DB /* DetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsController.swift; sourceTree = "<group>"; };
 		37D31679253CC8B000140093 /* OpenWeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherAPI.swift; sourceTree = "<group>"; };
 		37D3167E253CCF0D00140093 /* OpenWeatherLanguages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherLanguages.swift; sourceTree = "<group>"; };
 		37D31683253CCF7100140093 /* OpenWeatherUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherUnits.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				370354D0253773B8004EEE3C /* ViewController.swift */,
+				377C7EE22541288A00DE79DB /* DetailsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				37D3167A253CC8B000140093 /* OpenWeatherAPI.swift in Sources */,
 				377C7ED025410F9100DE79DB /* WeatherCell.swift in Sources */,
 				37D3168A253CD59900140093 /* WebService.swift in Sources */,
+				377C7EE32541288A00DE79DB /* DetailsController.swift in Sources */,
 				370354CD253773B8004EEE3C /* AppDelegate.swift in Sources */,
 				370354D7253773B8004EEE3C /* ACWeather.xcdatamodeld in Sources */,
 				37D31684253CCF7100140093 /* OpenWeatherUnits.swift in Sources */,

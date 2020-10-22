@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     
     var api: OpenWeatherAPI?
     let locationManager = CLLocationManager()
+    var selectedData: Weather?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +25,6 @@ class ViewController: UIViewController {
             return
         }
         self.api = OpenWeatherAPI(key: appKey, type: .json)
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.allowsMultipleSelectionDuringEditing = false
         NotificationCenter.default.addObserver(forName: .weatherDataAdded, object: nil, queue: .none, using: { _ in
             self.tableView.reloadData()
         })
@@ -55,6 +52,12 @@ class ViewController: UIViewController {
         }, failure: {
             
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let details = segue.destination as? DetailsController {
+            details.weather = self.selectedData
+        }
     }
     
 }
@@ -108,6 +111,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             DataManager.removeItem(item: weather[indexPath.row])
             self.tableView.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data = DataManager.getEntities(name: "Weather") as [Weather]
+        guard indexPath.row < data.count else { return }
+        self.selectedData = data[indexPath.row]
+        self.tableView.deselectRow(at: indexPath, animated: false)
     }
     
 }
