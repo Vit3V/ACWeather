@@ -27,7 +27,7 @@ class WeatherCell: UITableViewCell {
             formatter.dateStyle = .short
             formatter.doesRelativeDateFormatting = true
             self.weatherDate.text = formatter.string(from: date)
-            if let icon = self.icon, let url = URL(string: "http://openweathermap.org/img/wn/\(icon)@2x.png") {
+            if let iconCode = self.weatherData?.weather_icon, let url = URL(string: "http://openweathermap.org/img/wn/\(iconCode)@2x.png") {
                 self.icon.loadFrom(url: url)
             }
         }
